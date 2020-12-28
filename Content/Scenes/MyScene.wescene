@@ -1,0 +1,409 @@
+!WaveEngine.Framework.Assets.AssetSources.Entities.SceneModel,WaveEngine.Framework
+Items:
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: EnvironmentManager
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 7cf652b5-0d2e-4a05-ac0b-02015791fb99
+        IsEnabled: true
+        LocalOrientation:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: 0.999729156
+          Y: 1.580235
+          Z: 0.843612909
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Components.Graphics3D.EnvironmentComponent,WaveEngine.Framework
+        Id: 94fb114a-c4d8-4674-bd4d-409893d8ab53
+        IntensityMultiplier: 1.0
+        IsEnabled: true
+        ReflectionProbe: cb4c9738-03a0-494f-a839-20a22581fb59
+    Children: []
+    Id: 3aea6832-ccae-4bc6-9bb7-64229c7c2de0
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: Camera
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 809f1d2c-2305-4916-acfe-f81399ffb235
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.923879564
+          X: -0.382683396
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: 0.0
+          Y: 2.0
+          Z: 2.0
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Components.Cameras.FreeCamera3D,WaveEngine.Components
+        Id: 07d3e21d-cd4b-412f-88a6-1331d8afa583
+        IsEnabled: true
+        MaxPitch: 1.49225616
+        MouseSensibility: 0.0299999993
+        Speed: 5.0
+        TouchMoveAndOrientationRatio: 0.5
+        TouchSensibility: 1.0
+        UpdateOrder: 0.5
+      - !WaveEngine.Framework.Graphics.Camera3D,WaveEngine.Framework
+        Id: 5b10653e-93d2-48e7-884f-a07b2ac173ee
+        Aperture: 1.0
+        AspectRatio: 1.42857146
+        AutoExposureEnabled: false
+        CameraOrder: 0.0
+        ClearDepth: 1.0
+        ClearFlags: All
+        ClearStencil: 0
+        Compensation: 0.0
+        DepthRange:
+          MaxDepth: 1.0
+          MinDepth: 0.0
+        DisplayTag: null
+        DisplayTagDirty: true
+        Exposure: 1.0
+        FarPlane: 1000.0
+        FieldOfView: 0.785398185
+        FieldOfViewAxis: Vertical
+        FocalDistance: 1.0
+        FocalLength: 50.0
+        FrustumCullingEnabled: true
+        HDREnabled: true
+        IsEnabled: true
+        LayerMaskDefaultValue: true
+        LinearBackgroundColor:
+          A: 1.0
+          B: 0.851251662
+          G: 0.306634784
+          R: 0.12752977
+        LogLuminanceRange: 12.0
+        MinLogLuminance: -10.0
+        NearPlane: 0.100000001
+        ScreenViewport:
+          Height: 238.0
+          MaxDepth: 1.0
+          MinDepth: 0.0
+          Width: 340.0
+          X: 0.0
+          Y: 0.0
+        Sensitivity: 100.0
+        SensorSize:
+          X: 36.0
+          Y: 24.0
+        ShutterSpeed: 1.20000005
+        TAU: 1.10000002
+        TagFilter: null
+        UpVector:
+          X: 0.0
+          Y: 1.0
+          Z: 0.0
+        UsePhysicalParameters: false
+    Children: []
+    Id: 9841b6b3-9c09-4b60-b442-a5c63257ee02
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: SunLight
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: d73a976d-b2ab-4572-9ec9-351ded5f6fd3
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.995711029
+          X: 0.092518732
+          Y: -3.30872858E-08
+          Z: -1.11867985E-16
+        LocalPosition:
+          X: 4.0
+          Y: 4.0
+          Z: 4.0
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Framework.Graphics.PhotometricDirectionalLight,WaveEngine.Framework
+        Id: 5f6768ca-a7e6-4ab7-82b2-d9b3c42d111f
+        Color:
+          A: 0
+          B: 0
+          G: 0
+          R: 0
+        ColorByTemperature: true
+        Illuminance: 3.0
+        Intensity: 3.0
+        IsEnabled: true
+        IsShadowEnabled: false
+        LinearColor:
+          A: 0.0
+          B: 0.0
+          G: 0.0
+          R: 0.0
+        ShadowBias: -0.00249999994
+        ShadowsOpacity: 0.0
+        Temperature: 6500.0
+      - !WaveEngine.Framework.Graphics.SunComponent,WaveEngine.Framework
+        Id: 6f2b70f3-a505-49a6-9454-130b04d48cd3
+        IsEnabled: true
+    Children: []
+    Id: 3f7df33e-e1b9-411e-9601-362975b0c871
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: SkyAtmosphere
+    Tag: Skybox
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 34fe1903-039d-4944-bc32-d2226ad76267
+        IsEnabled: true
+        LocalOrientation:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Components.Graphics3D.MaterialComponent,WaveEngine.Framework
+        Id: bb44cd62-4d92-418a-8a42-bbc2ed2b6f07
+        AsignedTo: Default
+        IsEnabled: true
+        Material: 4d0cea66-437f-44ba-b635-7d16fee12d8e
+      - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
+        Id: 3ef37285-f016-4173-bbf0-278ec1624224
+        Diameter: 1.0
+        IsEnabled: true
+        Model: 00000000-0000-0000-0000-000000000000
+        ModelMeshName: sphere_primitive
+        Tessellation: 32
+        UVHorizontalFlip: false
+        UVVerticalFlip: false
+      - !WaveEngine.Components.Graphics3D.MeshRenderer,WaveEngine.Framework
+        Id: 1665742b-454f-4cda-9b9b-df6698342e5d
+        DebugBoundingbox: true
+        IsCullingEnabled: false
+        IsEnabled: true
+        OrderBias: 0
+      - !WaveEngine.Components.Environment.AtmosphereController,WaveEngine.Components
+        Id: 18617d72-081f-4fb6-bbac-b3dfbf177924
+        AtmosphereRadiusInKm: 6471.0
+        IsEnabled: true
+        MiePreferredScatteringDirection: 0.758000016
+        MieScaleHeight: 1200.0
+        MieScatteringCoefficient: 21.0
+        ModifySunColor: true
+        PlanetRadiusInKm: 6371.0
+        RayleighScaleHeight: 8000.0
+        RayleighScatteringCoefficient:
+          X: 5.5
+          Y: 13.0
+          Z: 22.3999996
+        SunDiskEnabled: true
+        SunDiskSize: 0.0199999996
+        SunIntensity: 22.0
+        UpdateOrder: 0.5
+    Children: []
+    Id: 6a094fea-e84d-4cbc-bb6e-60ccc60b5693
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: plane
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 75515f2a-dc77-42c9-95af-34eba847ec67
+        IsEnabled: true
+        LocalOrientation:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalScale:
+          X: 10.0
+          Y: 10.0
+          Z: 10.0
+      - !WaveEngine.Components.Graphics3D.MaterialComponent,WaveEngine.Framework
+        Id: e6ef24db-d6cb-475a-935b-ebf17138b57b
+        AsignedTo: Default
+        IsEnabled: true
+        Material: 02181b63-5a0e-46d1-9208-d92376ae33fb
+      - !WaveEngine.Components.Graphics3D.PlaneMesh,WaveEngine.Components
+        Id: 5607b733-089c-4337-8a27-bcd3a0ebe9a9
+        Height: 1.0
+        InitialU: 0.0
+        InitialV: 0.0
+        IsEnabled: true
+        Model: 00000000-0000-0000-0000-000000000000
+        ModelMeshName: plane_primitive
+        Normal:
+          X: 0.0
+          Y: 1.0
+          Z: 0.0
+        TwoSides: false
+        UTile: 0.99000001
+        UVHorizontalFlip: false
+        UVVerticalFlip: false
+        Width: 1.0
+        YTile: 0.99000001
+      - !WaveEngine.Components.Graphics3D.MeshRenderer,WaveEngine.Framework
+        Id: 9aee61b0-dd2a-49d3-8d91-85cca4f409a0
+        DebugBoundingbox: true
+        IsCullingEnabled: true
+        IsEnabled: true
+        OrderBias: 0
+    Children: []
+    Id: 32517b66-ede6-4420-b7db-4e578ca5ec14
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: teapot
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: fa6b1484-4f17-4166-aad5-e74c5bff7766
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.758109093
+          X: 0.0
+          Y: -0.652127743
+          Z: 0.0
+        LocalPosition:
+          X: 0.0
+          Y: 0.21812427
+          Z: 0.0
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Components.Graphics3D.MaterialComponent,WaveEngine.Framework
+        Id: 41a450be-3be3-449f-a9fe-fcf7ed4a26df
+        AsignedTo: Default
+        IsEnabled: true
+        Material: 02181b63-5a0e-46d1-9208-d92376ae33fb
+      - !WaveEngine.Components.Graphics3D.TeapotMesh,WaveEngine.Components
+        Id: 97ada845-af98-48b5-92e9-599a964060cb
+        IsEnabled: true
+        Model: 00000000-0000-0000-0000-000000000000
+        ModelMeshName: teapot_primitive
+        Size: 0.99000001
+        Tessellation: 16
+      - !WaveEngine.Components.Graphics3D.MeshRenderer,WaveEngine.Framework
+        Id: cb4b192e-bf6e-4ccc-9af1-eb3e9d684b7d
+        DebugBoundingbox: true
+        IsCullingEnabled: true
+        IsEnabled: true
+        OrderBias: 0
+    Children: []
+    Id: 0b00ebaf-5eef-4c90-bb60-e91ea2f357c2
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: spotLight
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 5da0822f-34eb-4532-9604-021bf5faca84
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.640967071
+          X: -0.194589376
+          Y: 0.728315055
+          Z: 0.144407555
+        LocalPosition:
+          X: 2.08563352
+          Y: 1.35504913
+          Z: -0.407018811
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Framework.Graphics.SpotLight,WaveEngine.Framework
+        Id: 77124c33-18c4-4ae8-a162-ddff0c52b561
+        Color:
+          A: 255
+          B: 255
+          G: 255
+          R: 255
+        InnerConeAngle: 0.0
+        Intensity: 20.0
+        IsEnabled: true
+        IsShadowEnabled: true
+        LightRange: 20.0
+        LinearColor:
+          A: 1.0
+          B: 1.0
+          G: 1.0
+          R: 1.0
+        OuterConeAngle: 0.785398185
+        ShadowBias: 0.00100000005
+        ShadowsOpacity: 0.0
+    Children: []
+    Id: 80932bd3-c16a-499b-aa6b-808cf42f95b0
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: spotLight_1
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: f16b0a4c-0d63-40f7-aa5e-e5b6b14c5f83
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.943607926
+          X: -0.166838497
+          Y: 0.281585187
+          Z: 0.0497868471
+        LocalPosition:
+          X: 1.83970165
+          Y: 1.63698184
+          Z: 2.44260502
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Framework.Graphics.SpotLight,WaveEngine.Framework
+        Id: 8604e51c-062e-41e0-8804-17d65fb5c11b
+        Color:
+          A: 255
+          B: 255
+          G: 255
+          R: 255
+        InnerConeAngle: 0.0
+        Intensity: 20.0
+        IsEnabled: true
+        IsShadowEnabled: true
+        LightRange: 20.0
+        LinearColor:
+          A: 1.0
+          B: 1.0
+          G: 1.0
+          R: 1.0
+        OuterConeAngle: 0.785398185
+        ShadowBias: 0.00100000005
+        ShadowsOpacity: 0.0
+    Children: []
+    Id: 3c6f7749-a1fe-469b-8769-985f92632be2
+Managers: []
