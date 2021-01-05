@@ -6,12 +6,13 @@ DefaultProfile:
   Platform: Undefined
 ExportAsRaw: false
 MaterialInfo:
-  Id: 54b71fb4-f95d-4374-89df-2343d0c6e039
+  Id: 930b2555-d60e-4010-af5d-e05b750e2be1
   ActiveDirectives:
     - ATEST
     - DIFF
     - IBL
     - LIT
+    - SHADOWFILTER7
   AllowInstancing: false
   EffectID: daa1f60a-82ad-40fc-8fbb-7b85caa6de0a
   Layer: 0db59561-b3f5-444f-b5de-e62e3a5b42bf
@@ -25,7 +26,7 @@ MaterialInfo:
       ValueByteArray: AwAAAAAAAAA=
     - Name: ViewProj
       Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
-      ValueByteArray: Rc4XQAAAAAAAAAAAAAAAAAAAAACYMgpADf/kvjD55L4AAAAAmjKKvwv/ZL8u+WS/AAAAAHmCGjUf7ItAvRuPQA==
+      ValueByteArray: SGAfQAAAAAAAAAAAAAAAAAAAAACYMgpADf/kvjD55L4AAAAAmjKKvwv/ZL8u+WS/AAAAAHmCGjUf7ItAvRuPQA==
     - Name: EyePosition
       Type: WaveEngine.Mathematics.Vector3,WaveEngine.Mathematics
       ValueByteArray: AAAAAAAAAEAAAIBA
@@ -46,7 +47,7 @@ MaterialInfo:
       ValueByteArray: AACAPw==
     - Name: MultiviewViewProj
       Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
-      ValueByteArray: Rc4XQAAAAAAAAAAAAAAAAAAAAACYMgpADf/kvjD55L4AAAAAmjKKvwv/ZL8u+WS/AAAAAHmCGjUf7ItAvRuPQA==
+      ValueByteArray: SGAfQAAAAAAAAAAAAAAAAAAAAACYMgpADf/kvjD55L4AAAAAmjKKvwv/ZL8u+WS/AAAAAHmCGjUf7ItAvRuPQA==
     - Name: MultiviewEyePosition
       Type: WaveEngine.Mathematics.Vector4,WaveEngine.Mathematics
       ValueByteArray: AAAAAAAAAEAAAIBAAACAPw==
@@ -70,10 +71,10 @@ MaterialInfo:
       ValueByteArray: AAAAPw==
     - Name: ClearCoat
       Type: System.Single
-      ValueByteArray: AAAAAA==
+      ValueByteArray: j8J1vA==
     - Name: ClearCoatRoughness
       Type: System.Single
-      ValueByteArray: AAAAAA==
+      ValueByteArray: Ctejuw==
     - Name: TextureOffset0
       Type: WaveEngine.Mathematics.Vector2,WaveEngine.Mathematics
       ValueByteArray: AAAAAAAAAAA=
@@ -94,7 +95,7 @@ MaterialInfo:
       ValueByteArray: QAAAACUAAABaAAADAGAQAA==
     - Name: ShadowViewProjectionArray
       Type: WaveEngine.Mathematics.Matrix4x4,WaveEngine.Mathematics
-      ValueByteArray: qgQhqSKiNKKQInxLMmtiDGJcYi0SPbLmoZDiBko/CjmJAHmJIVmJJJFYopEKChmpBZZaChm5Ajm5I5dbCgnJAg==
+      ValueByteArray: ED9oofh/AAAQ4vj6PAEAAABOm/s8AQAAAAAAAP/////g+3z7PAEAAA0AAAAAEAAAQBAziDwBAACQ0MDsPAEAAA==
   Samplers:
     - ID: 7d1e2792-2031-42bb-a67c-0dbd282be12a
       Name: BaseColorSampler
@@ -116,6 +117,8 @@ MaterialInfo:
       Name: null
     - ID: 00000000-0000-0000-0000-000000000000
       Name: null
+    - ID: 19c8935d-dbd5-4b8d-865c-021fe6a5ca74
+      Name: ShadowMapSampler
   Textures:
     - ID: 8b1d459c-c433-4ee3-bfe5-b45fbce12736
       Name: BaseColorTexture
@@ -133,11 +136,11 @@ MaterialInfo:
       Name: null
     - ID: d81d459c-c433-4ee3-bfe5-b45fbce12736
       Name: IblDFGTexture
-    - ID: 8028ef11-a16c-4103-bac5-192571595754
+    - ID: e6d8ae82-252c-4825-a337-37b63610bfe6
       Name: IBLRadianceTexture
-    - ID: 22669d50-0c04-4d5e-a83d-839f2c3f1430
+    - ID: 3a34111b-62eb-4a95-b63b-84cd98dbecd9
       Name: IBLIrradianceTexture
-    - ID: 660be088-9ec3-431b-a9ff-659671a69d0c
+    - ID: 6a366bc1-caf8-4432-a9e2-d513ee878e7f
       Name: ShadowMapArray2D
     - ID: 00000000-0000-0000-0000-000000000000
       Name: null
