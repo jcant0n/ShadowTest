@@ -63,7 +63,7 @@ Items:
       - !WaveEngine.Framework.Graphics.Camera3D,WaveEngine.Framework
         Id: 5b10653e-93d2-48e7-884f-a07b2ac173ee
         Aperture: 1.0
-        AspectRatio: 1.42857146
+        AspectRatio: 1.5
         AutoExposureEnabled: false
         CameraOrder: 0.0
         ClearDepth: 1.0
@@ -76,7 +76,7 @@ Items:
         DisplayTag: null
         DisplayTagDirty: true
         Exposure: 1.0
-        FarPlane: 1000.0
+        FarPlane: 100.0
         FieldOfView: 0.785398185
         FieldOfViewAxis: Vertical
         FocalDistance: 1.0
@@ -97,7 +97,7 @@ Items:
           Height: 238.0
           MaxDepth: 1.0
           MinDepth: 0.0
-          Width: 340.0
+          Width: 357.0
           X: 0.0
           Y: 0.0
         Sensitivity: 100.0
@@ -124,10 +124,10 @@ Items:
         Id: d73a976d-b2ab-4572-9ec9-351ded5f6fd3
         IsEnabled: true
         LocalOrientation:
-          W: 0.98301065
-          X: 0.114122868
-          Y: -0.0762138441
-          Z: 0.121894076
+          W: 0.989486098
+          X: -0.0158566199
+          Y: -0.0595595911
+          Z: 0.130840972
         LocalPosition:
           X: 1.59040689
           Y: 1.40271759
@@ -140,9 +140,9 @@ Items:
         Id: 5f6768ca-a7e6-4ab7-82b2-d9b3c42d111f
         Color:
           A: 0
-          B: 0
-          G: 0
-          R: 0
+          B: 20
+          G: 75
+          R: 148
         ColorByTemperature: true
         Illuminance: 3.0
         Intensity: 3.0
@@ -150,9 +150,9 @@ Items:
         IsShadowEnabled: false
         LinearColor:
           A: 0.0
-          B: 0.0
-          G: 0.0
-          R: 0.0
+          B: 0.00366671639
+          G: 0.0681062937
+          R: 0.300974637
         PartitionMode: Manual
         ShadowBias: -0.00249999994
         Temperature: 6500.0
@@ -176,9 +176,9 @@ Items:
           Y: 0.0
           Z: 0.0
         LocalPosition:
-          X: 0.0
-          Y: 0.0
-          Z: 0.0
+          X: -1.52549649E-06
+          Y: 4.65336895
+          Z: 5.54725318E-07
         LocalScale:
           X: 1.0
           Y: 1.0
@@ -187,7 +187,7 @@ Items:
         Id: bb44cd62-4d92-418a-8a42-bbc2ed2b6f07
         AsignedTo: Default
         IsEnabled: true
-        Material: 0dd452b8-6719-4aaa-af6f-0616d782b381
+        Material: 481d4014-2102-4fee-838a-21ec9084891f
       - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
         Id: 3ef37285-f016-4173-bbf0-278ec1624224
         Diameter: 1.0
@@ -238,9 +238,9 @@ Items:
           Y: 0.0
           Z: 0.0
         LocalPosition:
-          X: 0.0
-          Y: 0.0
-          Z: 0.0
+          X: 2.90072052E-07
+          Y: -0.884839535
+          Z: -1.05480652E-07
         LocalScale:
           X: 10.0
           Y: 10.0
@@ -291,9 +291,9 @@ Items:
           Y: -0.502242029
           Z: 0.502242029
         LocalPosition:
-          X: -1.21737289
-          Y: -0.0543893352
-          Z: -0.000934295414
+          X: -3.76752973
+          Y: -0.0543892495
+          Z: -0.000935356948
         LocalScale:
           X: 10.0
           Y: 10.0
@@ -341,12 +341,12 @@ Items:
         LocalOrientation:
           W: 0.978146791
           X: 0.0807417631
-          Y: -0.162264988
+          Y: -0.162265003
           Z: -0.101880997
         LocalPosition:
-          X: 0.719807744
-          Y: 0.54999584
-          Z: -0.200488508
+          X: -2.62425017
+          Y: -0.304467082
+          Z: -0.837830663
         LocalScale:
           X: 1.0
           Y: 1.0
@@ -374,7 +374,7 @@ Items:
   - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
     Name: spotLight_2
     Tag: null
-    IsEnabled: false
+    IsEnabled: true
     IsStatic: false
     Components:
       - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
@@ -386,9 +386,9 @@ Items:
           Y: 0.684580982
           Z: 0.0921090469
         LocalPosition:
-          X: 4.66543674
-          Y: 1.37313628
-          Z: -0.230826661
+          X: 3.63251042
+          Y: 0.576408863
+          Z: -0.23082529
         LocalScale:
           X: 1.0
           Y: 1.0
@@ -397,9 +397,9 @@ Items:
         Id: 57c7fd0b-f7f6-41ae-b527-5beb33951dcf
         Color:
           A: 255
-          B: 255
-          G: 255
-          R: 255
+          B: 45
+          G: 156
+          R: 56
         InnerConeAngle: 0.0
         Intensity: 20.0
         IsEnabled: true
@@ -407,9 +407,9 @@ Items:
         LightRange: 20.0
         LinearColor:
           A: 1.0
-          B: 1.0
-          G: 1.0
-          R: 1.0
+          B: 0.0220129937
+          G: 0.339223355
+          R: 0.0356143676
         OuterConeAngle: 0.785398185
         ShadowBias: 0.00100000005
     Children: []
@@ -417,21 +417,21 @@ Items:
   - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
     Name: pointLight
     Tag: null
-    IsEnabled: true
+    IsEnabled: false
     IsStatic: false
     Components:
       - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
         Id: bbadc666-1ae4-4a33-a8ed-07d7abd9e4da
         IsEnabled: true
         LocalOrientation:
-          W: 1.0
+          W: 0.321336031
+          X: -0.189650774
+          Y: 0.573592663
+          Z: 0.729223788
+        LocalPosition:
           X: 0.0
           Y: 0.0
-          Z: 0.0
-        LocalPosition:
-          X: 2.5311625
-          Y: 1.47135746
-          Z: -0.202139109
+          Z: -0.207381248
         LocalScale:
           X: 1.0
           Y: 1.0
@@ -440,19 +440,236 @@ Items:
         Id: 565dd749-b121-41bf-8113-74add110e846
         Color:
           A: 255
-          B: 255
-          G: 255
-          R: 255
+          B: 118
+          G: 218
+          R: 18
+        Intensity: 10.0
+        IsEnabled: true
+        IsShadowEnabled: true
+        LightRange: 20.0
+        LinearColor:
+          A: 1.0
+          B: 0.183548987
+          G: 0.708297789
+          R: 0.00293231825
+        ShadowBias: 0.00100000005
+    Children: []
+    Id: 473b27f0-3857-4236-a86e-c6f6d967850a
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: spotLight
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 29ca39b6-6d02-4263-ada2-21c746298b63
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.469770193
+          X: -0.0489463881
+          Y: 0.876692593
+          Z: 0.0912704617
+        LocalPosition:
+          X: 2.57851505
+          Y: 0.231560349
+          Z: -3.32313085
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Framework.Graphics.SpotLight,WaveEngine.Framework
+        Id: 3cb9644b-9704-4d2a-b035-069bd34f1b36
+        Color:
+          A: 255
+          B: 236
+          G: 236
+          R: 236
+        InnerConeAngle: 0.0
         Intensity: 20.0
         IsEnabled: true
         IsShadowEnabled: true
         LightRange: 20.0
         LinearColor:
           A: 1.0
-          B: 1.0
-          G: 1.0
-          R: 1.0
+          B: 0.843369722
+          G: 0.843369722
+          R: 0.843369722
+        OuterConeAngle: 0.785398185
         ShadowBias: 0.00100000005
     Children: []
-    Id: 473b27f0-3857-4236-a86e-c6f6d967850a
+    Id: e1e025a2-fa17-4e2e-9bfc-8c62e7f75cf9
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: cone
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 942b927f-8d1e-4375-b285-9a863c32c30c
+        IsEnabled: true
+        LocalOrientation:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: 2.14402032
+          Y: -0.146862626
+          Z: -0.146249786
+        LocalScale:
+          X: 0.937692225
+          Y: 0.937692225
+          Z: 0.937692225
+      - !WaveEngine.Components.Graphics3D.MaterialComponent,WaveEngine.Framework
+        Id: a0d45c76-6071-4a79-ae9d-4c8590ad3977
+        AsignedTo: Default
+        IsEnabled: true
+        Material: 02181b63-5a0e-46d1-9208-d92376ae33fb
+      - !WaveEngine.Components.Graphics3D.ConeMesh,WaveEngine.Components
+        Id: 2aecac04-7612-45de-8de3-4a47af286962
+        Diameter: 1.0
+        Height: 1.0
+        IsEnabled: true
+        Model: 00000000-0000-0000-0000-000000000000
+        ModelMeshName: cone_primitive
+        Tessellation: 16
+      - !WaveEngine.Components.Graphics3D.MeshRenderer,WaveEngine.Framework
+        Id: 65a4ed1e-7cbf-4117-bf43-086d1c8f04a3
+        DebugBoundingbox: true
+        IsCullingEnabled: true
+        IsEnabled: true
+        OrderBias: 0
+    Children: []
+    Id: 7240a6e1-2585-4e1c-8129-275f789225a0
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: torus
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 33c5b033-5a44-4e48-a8c4-933812ceacb4
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.951625168
+          X: -0.303467482
+          Y: -0.0146244578
+          Z: -0.0458602384
+        LocalPosition:
+          X: -0.0389589965
+          Y: -0.245362967
+          Z: 1.16262376
+        LocalScale:
+          X: 0.587107062
+          Y: 0.587107062
+          Z: 0.587107062
+      - !WaveEngine.Components.Graphics3D.MaterialComponent,WaveEngine.Framework
+        Id: 6b776701-7eb0-4413-83cc-b04d61c1e8ff
+        AsignedTo: Default
+        IsEnabled: true
+        Material: 02181b63-5a0e-46d1-9208-d92376ae33fb
+      - !WaveEngine.Components.Graphics3D.TorusMesh,WaveEngine.Components
+        Id: 9eaa3409-da9a-40a3-96a5-6cecf364b358
+        Diameter: 1.0
+        IsEnabled: true
+        Model: 00000000-0000-0000-0000-000000000000
+        ModelMeshName: torus_primitive
+        Tessellation: 16
+        Thickness: 0.333000004
+      - !WaveEngine.Components.Graphics3D.MeshRenderer,WaveEngine.Framework
+        Id: 8c36fee1-00d0-4ece-af73-3ae3e350c2ee
+        DebugBoundingbox: true
+        IsCullingEnabled: true
+        IsEnabled: true
+        OrderBias: 0
+    Children: []
+    Id: 002e2da5-d2ff-49c1-a9b4-36a0b0a89a51
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: sphere
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: bc3eec3e-5ff3-4f18-8080-720b8aa0cc52
+        IsEnabled: true
+        LocalOrientation:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: -0.322788447
+          Y: -0.532340169
+          Z: -2.55589628
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Components.Graphics3D.MaterialComponent,WaveEngine.Framework
+        Id: c9b3c14b-28f8-4c9d-aeba-27fe879029ac
+        AsignedTo: Default
+        IsEnabled: true
+        Material: 02181b63-5a0e-46d1-9208-d92376ae33fb
+      - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
+        Id: 825e704c-d83f-45b0-9191-327f5df9ddd0
+        Diameter: 1.0
+        IsEnabled: true
+        Model: 00000000-0000-0000-0000-000000000000
+        ModelMeshName: sphere_primitive
+        Tessellation: 16
+        UVHorizontalFlip: false
+        UVVerticalFlip: false
+      - !WaveEngine.Components.Graphics3D.MeshRenderer,WaveEngine.Framework
+        Id: 3b991503-baa5-4c0f-9caa-7fc759cd7da5
+        DebugBoundingbox: true
+        IsCullingEnabled: true
+        IsEnabled: true
+        OrderBias: 0
+    Children: []
+    Id: 696ba416-9f32-4236-b990-41e61f0e88c3
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: sphere
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 55ccbc36-e42f-4247-8d0b-866b947bfb6a
+        IsEnabled: true
+        LocalOrientation:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: 0.0612969398
+          Y: 0.0912900567
+          Z: -3.05905581
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Components.Graphics3D.MaterialComponent,WaveEngine.Framework
+        Id: 4568f0a8-9ac7-4c7e-88de-9374f4156de1
+        AsignedTo: Default
+        IsEnabled: true
+        Material: 02181b63-5a0e-46d1-9208-d92376ae33fb
+      - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
+        Id: f3a9f0f0-ab47-4b94-9b36-7b6470ac49ba
+        Diameter: 1.0
+        IsEnabled: true
+        Model: 00000000-0000-0000-0000-000000000000
+        ModelMeshName: sphere_primitive
+        Tessellation: 16
+        UVHorizontalFlip: false
+        UVVerticalFlip: false
+      - !WaveEngine.Components.Graphics3D.MeshRenderer,WaveEngine.Framework
+        Id: 99f5ffa9-3640-4426-bc49-07986454cb83
+        DebugBoundingbox: true
+        IsCullingEnabled: true
+        IsEnabled: true
+        OrderBias: 0
+    Children: []
+    Id: 2570206b-7754-46d1-8bb9-b14289f8ebee
 Managers: []

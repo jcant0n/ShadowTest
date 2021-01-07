@@ -8,7 +8,7 @@ DefaultProfile:
     Id: 9215bc3e-00b5-4a4d-a1f8-92144a00bfc2
     Description:
       AddressU: Clamp
-      AddressV: Mirror
+      AddressV: Clamp
       AddressW: Clamp
       BorderColor: OpaqueWhite
       ComparisonFunc: Never
