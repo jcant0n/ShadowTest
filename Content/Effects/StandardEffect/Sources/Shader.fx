@@ -36,6 +36,16 @@ struct LightProperties
 	{
 		return ShadowMapIndex != -1;	
 	}
+	
+	inline float GetCubemapRemapNear()
+	{
+		return Scale.x;
+	}
+	
+	inline float GetCubemapRemapFar()
+	{
+		return Scale.y;
+	}
 };
 
 cbuffer PerDrawCall : register(b0)
@@ -1279,20 +1289,21 @@ void PointLight(const ShadingParams shading, const MaterialInputs material, cons
 		[branch]
 		if(lightProperties.IsCastingShadow())
 		{
-			float3 lightToPos = worldPosition - lightProperties.Position;
-			//float depth = length(lightToPos) - lightProperties.ShadowBias;
-			//shadowTerm = ShadowMapArrayCube.SampleCmpLevelZero(ShadowMapSampler, float4(lightToPos, 0), depth);
 			
-			shadowTerm = (1.0 - ShadowMapArrayCube.Sample(BaseColorSampler, float4(lightToPos, 0)).r) * 10;
+			float remappedDistance = lightProperties.GetCubemapRemapNear() + 
+				lightProperties.GetCubemapRemapFar() / max(max(abs(posToLight.x), abs(posToLight.y)), abs(posToLight.z));
+			
+			remappedDistance -= lightProperties.ShadowBias;
+			posToLight.x = -posToLight.x;
+			shadowTerm = ShadowMapArrayCube.SampleCmpLevelZero(ShadowMapSampler, float4(-posToLight, lightProperties.ShadowMapIndex), remappedDistance);
 		}
 		
-		//float3 lightColor = lightProperties.Color * 
-		//					ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
-		//					material.ambientOcclusion * 
-		//					attenuation *
-		//					shadowTerm;
+		float3 lightColor = lightProperties.Color * 
+							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
+							material.ambientOcclusion * 
+							attenuation *
+							shadowTerm;
 							
-		float3 lightColor = shadowTerm;
 		
 		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L, NoL);
 		color += SurfaceShading(shading, pixel, surfaceToLight, lightColor);
@@ -1497,6 +1508,10 @@ void SpotLight(const ShadingParams shading, const MaterialInputs material, const
 	}
 }
 
+inline bool is_saturated(float a) { return a == saturate(a); }
+inline bool is_saturated(float2 a) { return is_saturated(a.x) && is_saturated(a.y); }
+inline bool is_saturated(float3 a) { return is_saturated(a.x) && is_saturated(a.y) && is_saturated(a.z); }
+
 void DirectionalLight(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, const LightProperties lightProperties, inout float3 color)
 {
 	float3 L = lightProperties.Direction;
@@ -1505,7 +1520,35 @@ void DirectionalLight(const ShadingParams shading, const MaterialInputs material
 	[branch]
 	if (NoL > 0)
 	{
-		float3 lightColor = lightProperties.Color * ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion;
+		float3 shadowTerm = 1;
+		
+		[branch]
+		if(lightProperties.IsCastingShadow())
+		{
+			float4 shadowPosition = 0;
+			uint cascade = 1;
+			//for(uint cascade = 0; cascade < NumCascades; cascade++)
+			//{
+				shadowPosition = mul(float4(shading.position, 1), ShadowViewProjectionArray[lightProperties.ShadowMapIndex + cascade]);
+				shadowPosition.xyz /= shadowPosition.w;
+				
+				shadowTerm = ShadowCascade(lightProperties, shadowPosition.xyz, cascade);
+				
+				//float3 shTex = shadowPosition.xyz * float3(0.5,-0.5,0.5) + 0.5;
+				//[branch]
+				//if (is_saturated(shTex))
+				//{
+				//	shadowTerm = ShadowCascade(lightProperties, shadowPosition.xyz, cascade);
+				//	break;
+				//}
+			//}
+		}
+		
+		float3 lightColor = lightProperties.Color *
+							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
+							material.ambientOcclusion *
+							shadowTerm;
+							
 		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L, NoL);
 		color += SurfaceShading(shading, pixel, surfaceToLight, lightColor);
 	}
@@ -1893,7 +1936,7 @@ float4 PixelFunction(VSOutputPbr input) : SV_Target
 	InitMaterial(input, material);
 
 	PrepareMaterial(material, shading);
-
+	
 	float4 color = EvaluateMaterial(shading, material);
 	color.rgb *= Alpha;
 
