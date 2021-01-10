@@ -1273,6 +1273,16 @@ inline float3 GetSpecularDominantDirArea(float3 N, float3 R, float roughness)
 	return normalize(lerp(N, R, lerpFactor));
 }
 
+float SampleShadowMapCube(float3 posToLight, LightProperties lightProperties)
+{
+	float remappedDistance = lightProperties.GetCubemapRemapNear() + 
+				lightProperties.GetCubemapRemapFar() / max(max(abs(posToLight.x), abs(posToLight.y)), abs(posToLight.z));
+			
+	remappedDistance -= lightProperties.ShadowBias;
+	posToLight.x = -posToLight.x;
+	return ShadowMapArrayCube.SampleCmpLevelZero(ShadowMapSampler, float4(-posToLight, lightProperties.ShadowMapIndex), remappedDistance);
+}
+
 void PointLight(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, const LightProperties lightProperties, inout float3 color)
 {
 	float3 worldPosition = shading.position;
@@ -1284,18 +1294,12 @@ void PointLight(const ShadingParams shading, const MaterialInputs material, cons
 	[branch]
 	if (NoL * attenuation > 0)
 	{
-		float3 shadowTerm = 1;
+		float shadowTerm = 1;
 		
 		[branch]
 		if(lightProperties.IsCastingShadow())
 		{
-			
-			float remappedDistance = lightProperties.GetCubemapRemapNear() + 
-				lightProperties.GetCubemapRemapFar() / max(max(abs(posToLight.x), abs(posToLight.y)), abs(posToLight.z));
-			
-			remappedDistance -= lightProperties.ShadowBias;
-			posToLight.x = -posToLight.x;
-			shadowTerm = ShadowMapArrayCube.SampleCmpLevelZero(ShadowMapSampler, float4(-posToLight, lightProperties.ShadowMapIndex), remappedDistance);
+			shadowTerm = SampleShadowMapCube(posToLight, lightProperties);
 		}
 		
 		float3 lightColor = lightProperties.Color * 
@@ -1303,7 +1307,6 @@ void PointLight(const ShadingParams shading, const MaterialInputs material, cons
 							material.ambientOcclusion * 
 							attenuation *
 							shadowTerm;
-							
 		
 		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L, NoL);
 		color += SurfaceShading(shading, pixel, surfaceToLight, lightColor);
@@ -1768,6 +1771,20 @@ void SphereLight(const ShadingParams shading, const MaterialInputs material, con
 
 	if (fLight > 0)
 	{
+		float shadowTerm = 1;
+		
+		[branch]
+		if(lightProperties.IsCastingShadow())
+		{
+			shadowTerm = SampleShadowMapCube(Lunnormalized, lightProperties);
+		}
+	
+		float3 lightColor = lightProperties.Color * 
+							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
+							material.ambientOcclusion * 
+							fLight *
+							shadowTerm;
+
 		float3 r = shading.reflected;
 		r = GetSpecularDominantDirArea(shading.normal, r, material.roughness);
 
@@ -1775,12 +1792,7 @@ void SphereLight(const ShadingParams shading, const MaterialInputs material, con
 		float3 closestPoint = Lunnormalized + centerToRay * saturate(radius / length(centerToRay));
 		L = normalize(closestPoint);
 
-
 		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L);
-
-		float3 lightColor = lightProperties.Color;
-		lightColor *= ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
-
 		color += SurfaceShadingAreaLight(shading, pixel, surfaceToLight, lightColor, 1);
 	}
 }

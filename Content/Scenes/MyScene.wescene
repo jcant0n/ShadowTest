@@ -102,7 +102,7 @@ Items:
         Id: bb44cd62-4d92-418a-8a42-bbc2ed2b6f07
         AsignedTo: Default
         IsEnabled: true
-        Material: a1e3bae9-a521-4ac2-ae5c-309680fd6ba2
+        Material: 4cd58f19-0732-4d42-ac9f-de07904e91d8
       - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
         Id: 3ef37285-f016-4173-bbf0-278ec1624224
         Diameter: 1.0
@@ -261,11 +261,11 @@ Items:
         LocalPosition:
           X: -2.95683408
           Y: -0.278882742
-          Z: 0.0629428178
+          Z: 0.58065784
         LocalScale:
-          X: 0.33104369
-          Y: 0.33104369
-          Z: 0.33104369
+          X: 0.529819608
+          Y: 0.529819608
+          Z: 0.529819608
       - !WaveEngine.Components.Graphics3D.MaterialComponent,WaveEngine.Framework
         Id: 41a450be-3be3-449f-a9fe-fcf7ed4a26df
         AsignedTo: Default
@@ -302,7 +302,7 @@ Items:
           Z: 0.0
         LocalPosition:
           X: -1.16282451
-          Y: -0.453897834
+          Y: -0.422466457
           Z: 1.89017415
         LocalScale:
           X: 0.937692225
@@ -495,7 +495,7 @@ Items:
   - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
     Name: pointLight
     Tag: null
-    IsEnabled: true
+    IsEnabled: false
     IsStatic: false
     Components:
       - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
@@ -507,9 +507,9 @@ Items:
           Y: 0.0
           Z: 0.0
         LocalPosition:
-          X: -0.714956045
-          Y: -0.518347025
-          Z: 0.474863827
+          X: -0.897596121
+          Y: -0.555538595
+          Z: 0.895295918
         LocalScale:
           X: 1.0
           Y: 1.0
@@ -530,17 +530,17 @@ Items:
           B: 1.0
           G: 1.0
           R: 1.0
-        ShadowBias: 0.00999999978
+        ShadowBias: 0.00100000005
     Children: []
     Id: dbbac09d-fb22-44ce-aedf-e997fc4ca02a
   - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
-    Name: pointLight_1
+    Name: sphereLight
     Tag: null
     IsEnabled: true
     IsStatic: false
     Components:
       - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
-        Id: 77924dc3-f59b-47e1-8009-cb44d2b74ea9
+        Id: c40208e9-cd6b-49db-89f0-5a7af4687480
         IsEnabled: true
         LocalOrientation:
           W: 1.0
@@ -548,21 +548,21 @@ Items:
           Y: 0.0
           Z: 0.0
         LocalPosition:
-          X: -1.7616297
-          Y: -0.19987458
-          Z: -0.323851168
+          X: -2.15073633
+          Y: -0.463999748
+          Z: 0.11810302
         LocalScale:
           X: 1.0
           Y: 1.0
           Z: 1.0
-      - !WaveEngine.Framework.Graphics.PointLight,WaveEngine.Framework
-        Id: ccf60a4b-f4cf-48f3-b223-aec7911d1a1b
+      - !WaveEngine.Framework.Graphics.SphereLight,WaveEngine.Framework
+        Id: 3041b12c-c5a4-4d41-a350-60748a5d8f40
         Color:
           A: 255
           B: 255
           G: 255
           R: 255
-        Intensity: 3.0
+        Intensity: 10.0
         IsEnabled: true
         IsShadowEnabled: true
         LightRange: 10.0
@@ -571,7 +571,8 @@ Items:
           B: 1.0
           G: 1.0
           R: 1.0
-        ShadowBias: 0.00999999978
+        Radius: 0.200000003
+        ShadowBias: 0.00100000005
     Children: []
-    Id: b9b25fdd-fd76-47f4-a5cf-07c39c94b83d
+    Id: 5d36011b-1fce-4f5d-a5d7-195cec7d0a2e
 Managers: []
