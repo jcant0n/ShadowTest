@@ -102,7 +102,7 @@ Items:
         Id: bb44cd62-4d92-418a-8a42-bbc2ed2b6f07
         AsignedTo: Default
         IsEnabled: true
-        Material: 4cd58f19-0732-4d42-ac9f-de07904e91d8
+        Material: 36d559ae-4289-4b01-b1d1-35f3638a322b
       - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
         Id: 3ef37285-f016-4173-bbf0-278ec1624224
         Diameter: 1.0
@@ -495,7 +495,7 @@ Items:
   - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
     Name: pointLight
     Tag: null
-    IsEnabled: false
+    IsEnabled: true
     IsStatic: false
     Components:
       - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
@@ -507,9 +507,9 @@ Items:
           Y: 0.0
           Z: 0.0
         LocalPosition:
-          X: -0.897596121
+          X: -1.91057634
           Y: -0.555538595
-          Z: 0.895295918
+          Z: 1.07202756
         LocalScale:
           X: 1.0
           Y: 1.0
@@ -533,46 +533,4 @@ Items:
         ShadowBias: 0.00100000005
     Children: []
     Id: dbbac09d-fb22-44ce-aedf-e997fc4ca02a
-  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
-    Name: sphereLight
-    Tag: null
-    IsEnabled: true
-    IsStatic: false
-    Components:
-      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
-        Id: c40208e9-cd6b-49db-89f0-5a7af4687480
-        IsEnabled: true
-        LocalOrientation:
-          W: 1.0
-          X: 0.0
-          Y: 0.0
-          Z: 0.0
-        LocalPosition:
-          X: -2.15073633
-          Y: -0.463999748
-          Z: 0.11810302
-        LocalScale:
-          X: 1.0
-          Y: 1.0
-          Z: 1.0
-      - !WaveEngine.Framework.Graphics.SphereLight,WaveEngine.Framework
-        Id: 3041b12c-c5a4-4d41-a350-60748a5d8f40
-        Color:
-          A: 255
-          B: 255
-          G: 255
-          R: 255
-        Intensity: 10.0
-        IsEnabled: true
-        IsShadowEnabled: true
-        LightRange: 10.0
-        LinearColor:
-          A: 1.0
-          B: 1.0
-          G: 1.0
-          R: 1.0
-        Radius: 0.200000003
-        ShadowBias: 0.00100000005
-    Children: []
-    Id: 5d36011b-1fce-4f5d-a5d7-195cec7d0a2e
 Managers: []

@@ -31,7 +31,8 @@ struct LightProperties
 	float	Radius;
 	float3	Left;
 	int		ShadowMapIndex;
-	
+	float4  Extra;
+
 	inline bool IsCastingShadow()
 	{
 		return ShadowMapIndex != -1;	
@@ -39,12 +40,12 @@ struct LightProperties
 	
 	inline float GetCubemapRemapNear()
 	{
-		return Scale.x;
+		return Extra.x;
 	}
 	
 	inline float GetCubemapRemapFar()
 	{
-		return Scale.y;
+		return Extra.y;
 	}
 };
 
@@ -1596,6 +1597,21 @@ void TubeLight(const ShadingParams shading, const MaterialInputs material, const
 	[branch]
 	if (fLight > 0)
 	{
+		float shadowTerm = 1;
+		
+		[branch]
+		if(lightProperties.IsCastingShadow())
+		{
+			float3 lunormalized = lightProperties.Position - shading.position;
+			shadowTerm = SampleShadowMapCube(lunormalized, lightProperties);
+		}
+		
+		float3 lightColor = lightProperties.Color * 
+							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
+							material.ambientOcclusion * 
+							fLight *
+							shadowTerm;
+		
 		float3 r = shading.reflected;
 		r = GetSpecularDominantDirArea(shading.normal, r, material.roughness);
 
@@ -1615,9 +1631,6 @@ void TubeLight(const ShadingParams shading, const MaterialInputs material, const
 		L = normalize(closestPoint);
 
 		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L);
-
-		float3 lightColor = lightProperties.Color;
-		lightColor *= ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
 
 		color += SurfaceShadingAreaLight(shading, pixel, surfaceToLight, lightColor, 1);
 	}
@@ -1663,6 +1676,20 @@ void RectangleLight(const ShadingParams shading, const MaterialInputs material, 
 		[branch]
 		if ((specularAttenuation * fLight) > 0)
 		{
+			float shadowTerm = 1;
+		
+			[branch]
+			if(lightProperties.IsCastingShadow())
+			{
+				shadowTerm = SampleShadowMapCube(lunormalized, lightProperties);
+			}
+			
+			float3 lightColor = lightProperties.Color *
+								ComputePreExposedIntensity(lightProperties.Intensity, Exposure) *
+								material.ambientOcclusion *
+								fLight *
+								shadowTerm;
+			
 			float traced = TraceRectangle(shading.position, r, p0, p1, p2, p3);
 			[branch]
 			if (traced > 0)
@@ -1709,9 +1736,6 @@ void RectangleLight(const ShadingParams shading, const MaterialInputs material, 
 
 			SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L);
 
-			float3 lightColor = lightProperties.Color;
-			lightColor *= ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
-
 			color += SurfaceShadingAreaLight(shading, pixel, surfaceToLight, lightColor, specularAttenuation);
 		}
 	}
@@ -1741,15 +1765,26 @@ void DiskLight(const ShadingParams shading, const MaterialInputs material, const
 		[branch]
 		if (specularAttenuation > 0)
 		{
+			float shadowTerm = 1;
+		
+			[branch]
+			if(lightProperties.IsCastingShadow())
+			{
+				shadowTerm = SampleShadowMapCube(Lunnormalized, lightProperties);
+			}
+			
+			float3 lightColor = lightProperties.Color *
+								ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
+								material.ambientOcclusion * 
+								fLight *
+								shadowTerm;
+			
 			float t = TracePlane(shading.position, r, lightProperties.Position, lightProperties.Direction);
 			float3 p = shading.position + r * t;
 			float3 centerToRay = p - lightProperties.Position;
 			float3 closestPoint = Lunnormalized + centerToRay * saturate(radius / length(centerToRay));
 			L = normalize(closestPoint);
 			SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L);
-
-			float3 lightColor = lightProperties.Color;
-			lightColor *= ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * material.ambientOcclusion * fLight;
 
 			color += SurfaceShadingAreaLight(shading, pixel, surfaceToLight, lightColor, specularAttenuation);
 		}
