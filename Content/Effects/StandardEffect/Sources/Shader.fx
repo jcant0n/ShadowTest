@@ -1465,7 +1465,7 @@ inline float3 ShadowCascade(in LightProperties lightProperties, in float3 shadow
 	float3 shadow = 0;
 	float3 cascadeColor = 1.0;
 	
-	//#if VIEWCASCADE
+	#if VIEWCASCADE
         const float3 CascadeColors[NumCascades] =
         {
             float3(1.0, 0.0, 0.0),
@@ -1475,7 +1475,7 @@ inline float3 ShadowCascade(in LightProperties lightProperties, in float3 shadow
         };
 
         cascadeColor = CascadeColors[cascadeIdx];
-    //#endif
+    #endif
 
 	shadow = SampleShadowMapPCF(shadowPosition, lightProperties.ShadowMapIndex + cascadeIdx, lightProperties.ShadowBias);
 	
@@ -1503,7 +1503,7 @@ void SpotLight(const ShadingParams shading, const MaterialInputs material, const
 			shadowPosition.xyz /= shadowPosition.w;
 			shadowTerm = ShadowCascade(lightProperties, shadowPosition.xyz, 0);
 		}
-
+		
 		float3 lightColor = lightProperties.Color * 
 							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
 							material.ambientOcclusion * 
