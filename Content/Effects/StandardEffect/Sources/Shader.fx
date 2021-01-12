@@ -343,8 +343,9 @@ struct VSInputPbr
 
 struct VSOutputPbr
 {
-	float4 PositionProj : SV_POSITION;
-	float3 PositionWorld : POSITION1;
+	float4 PositionProj 	: SV_POSITION;
+	float3 PositionWorld 	: POSITION1;
+	float DepthVS			: DEPTHVS;
 
 #if LIT || IBL
 	float3 NormalWS	: NORMAL;
@@ -412,6 +413,8 @@ VSOutputPbr VertexFunction(VSInputPbr input)
 
 	const float4 transformedPosWorld = mul(float4(input.Position, 1), World);
 	output.PositionProj = mul(transformedPosWorld, viewProj);
+	output.DepthVS = output.PositionProj.w;
+	
 #if LIT || IBL
 	output.PositionWorld = transformedPosWorld.xyz;
 	output.NormalWS = normalize(mul(float4(input.Normal, 0), World).xyz);
@@ -1462,7 +1465,7 @@ inline float3 ShadowCascade(in LightProperties lightProperties, in float3 shadow
 	float3 shadow = 0;
 	float3 cascadeColor = 1.0;
 	
-	#if VIEWCASCADE
+	//#if VIEWCASCADE
         const float3 CascadeColors[NumCascades] =
         {
             float3(1.0, 0.0, 0.0),
@@ -1472,7 +1475,7 @@ inline float3 ShadowCascade(in LightProperties lightProperties, in float3 shadow
         };
 
         cascadeColor = CascadeColors[cascadeIdx];
-    #endif
+    //#endif
 
 	shadow = SampleShadowMapPCF(shadowPosition, lightProperties.ShadowMapIndex + cascadeIdx, lightProperties.ShadowBias);
 	
@@ -1516,7 +1519,7 @@ inline bool is_saturated(float a) { return a == saturate(a); }
 inline bool is_saturated(float2 a) { return is_saturated(a.x) && is_saturated(a.y); }
 inline bool is_saturated(float3 a) { return is_saturated(a.x) && is_saturated(a.y) && is_saturated(a.z); }
 
-void DirectionalLight(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, const LightProperties lightProperties, inout float3 color)
+void DirectionalLight(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, const LightProperties lightProperties, inout float3 color, in float depthVS)
 {
 	float3 L = lightProperties.Direction;
 	float NoL = saturate(dot(shading.normal, L));
@@ -1530,22 +1533,20 @@ void DirectionalLight(const ShadingParams shading, const MaterialInputs material
 		if(lightProperties.IsCastingShadow())
 		{
 			float4 shadowPosition = 0;
-			uint cascade = 1;
-			//for(uint cascade = 0; cascade < NumCascades; cascade++)
-			//{
-				shadowPosition = mul(float4(shading.position, 1), ShadowViewProjectionArray[lightProperties.ShadowMapIndex + cascade]);
-				shadowPosition.xyz /= shadowPosition.w;
-				
-				shadowTerm = ShadowCascade(lightProperties, shadowPosition.xyz, cascade);
-				
-				//float3 shTex = shadowPosition.xyz * float3(0.5,-0.5,0.5) + 0.5;
-				//[branch]
-				//if (is_saturated(shTex))
-				//{
-				//	shadowTerm = ShadowCascade(lightProperties, shadowPosition.xyz, cascade);
-				//	break;
-				//}
-			//}
+			uint cascade = 0;
+			float4 cascadeSpits = lightProperties.Extra;
+			
+			[unroll]
+			for(int i = NumCascades - 1; i >= 0; i--)
+			{
+				if(depthVS <= cascadeSpits[i])
+					cascade = i;
+			}
+			
+			shadowPosition = mul(float4(shading.position, 1), ShadowViewProjectionArray[lightProperties.ShadowMapIndex + cascade]);
+			shadowPosition.xyz /= shadowPosition.w;
+			
+			shadowTerm = ShadowCascade(lightProperties, shadowPosition.xyz, cascade);
 		}
 		
 		float3 lightColor = lightProperties.Color *
@@ -1843,7 +1844,7 @@ uint findIndexLSB(uint value)
 	return MultiplyDeBruijnBitPosition[((uint)((value & -value) * 0x077CB531U)) >> 27];
 }
 
-void EvaluateDirectLights(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, inout float3 color)
+void EvaluateDirectLights(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, inout float3 color, in float depthVS)
 {
 	[branch]
 	if (any(ForwardLightMask))
@@ -1875,7 +1876,7 @@ void EvaluateDirectLights(const ShadingParams shading, const MaterialInputs mate
 				{
 					case DIRECTIONAL_LIGHT:
 					{
-						DirectionalLight(shading, material, pixel, lightProperties, color);
+						DirectionalLight(shading, material, pixel, lightProperties, color, depthVS);
 						break;
 					}
 					case POINT_LIGHT:
@@ -1920,7 +1921,7 @@ void EvaluateDirectLights(const ShadingParams shading, const MaterialInputs mate
 }
 #endif
 
-float4 EvaluateLights(const ShadingParams shading, const MaterialInputs material)
+float4 EvaluateLights(const ShadingParams shading, const MaterialInputs material, in float depthVS)
 {
 	PixelParams pixel;
 	GetPixelParams(shading, material, pixel);
@@ -1937,7 +1938,7 @@ float4 EvaluateLights(const ShadingParams shading, const MaterialInputs material
 #endif
 
 #if LIT
-	EvaluateDirectLights(shading, material, pixel, color);
+	EvaluateDirectLights(shading, material, pixel, color, depthVS);
 #endif
 
 	return float4(color, material.baseColor.a);
@@ -1957,11 +1958,11 @@ void AddEmissive(const MaterialInputs material, inout float4 color)
 }
 #endif
 
-float4 EvaluateMaterial(const ShadingParams shading, const MaterialInputs material)
+float4 EvaluateMaterial(const ShadingParams shading, const MaterialInputs material, in float depthVS)
 {
 	float4 color;
 #if LIT || IBL
-	color = EvaluateLights(shading, material);
+	color = EvaluateLights(shading, material, depthVS);
 #if EMIS
 	AddEmissive(material, color);
 #endif
@@ -1984,7 +1985,7 @@ float4 PixelFunction(VSOutputPbr input) : SV_Target
 
 	PrepareMaterial(material, shading);
 	
-	float4 color = EvaluateMaterial(shading, material);
+	float4 color = EvaluateMaterial(shading, material, input.DepthVS);
 	color.rgb *= Alpha;
 
 #if GAMMA_COLORSPACE
