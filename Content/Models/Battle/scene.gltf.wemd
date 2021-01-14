@@ -1,0 +1,43 @@
+!WaveEngine.Assets.Exporters.ModelMetaFile,WaveEngine.Assets
+Id: a6e24909-7863-4f4a-aead-66f68cc11a98
+Clips: []
+DefaultProfile:
+  ExcludeAsset: false
+  Name: null
+  Platform: Undefined
+ExportAnimations: true
+ExportAsRaw: false
+GenerateTangentSpace: true
+Profiles: {}
+Source:
+  Header:
+    Id: a01fec7f-753b-455b-9321-d19ec171ced9
+    IsCompressed: true
+  LastModified: 0001-01-01T00:00:00.0000000
+  ModelInfo:
+    Id: 35cb21a3-05a3-4ea0-a47e-6d52f06b64e3
+    AnimationTracks: []
+    EmbeddedResources: null
+    Materials:
+      - Item1: material_0
+        Item2: 5f8abce6-3c1c-403b-aef6-901b4dc3f039
+    Nodes:
+      - RootNode (gltf orientation matrix)
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix)
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_3
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_4
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_5
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_6
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_7
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_8
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_9
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_10
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_11
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_12
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_13
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_14
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_15
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_16
+      - RootNode (gltf orientation matrix).RootNode (model correction matrix).22aa_OBJ_cleaner_gles._Node_17
+SwapWindingOrder: false
