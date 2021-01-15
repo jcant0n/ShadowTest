@@ -17,6 +17,7 @@
 [directives:ColorSpace GAMMA_COLORSPACE_OFF GAMMA_COLORSPACE]
 [directives:VisualizeCascades VIEWCASCADE_OFF VIEWCASCADE]
 [directives:ShadowFilterSize SHADOWFILTER2 SHADOWFILTER3 SHADOWFILTER5 SHADOWFILTER7]
+[directives:ShadowSupported SHADOW_SUPPORTED_OFF SHADOW_SUPPORTED]
 
 struct LightProperties
 {
@@ -1277,6 +1278,7 @@ inline float3 GetSpecularDominantDirArea(float3 N, float3 R, float roughness)
 	return normalize(lerp(N, R, lerpFactor));
 }
 
+#if SHADOW_SUPPORTED
 float SampleShadowMapCube(float3 posToLight, LightProperties lightProperties)
 {
 	float remappedDistance = lightProperties.GetCubemapRemapNear() + 
@@ -1287,42 +1289,7 @@ float SampleShadowMapCube(float3 posToLight, LightProperties lightProperties)
 	return ShadowMapArrayCube.SampleCmpLevelZero(ShadowMapSampler, float4(-posToLight, lightProperties.ShadowMapIndex), remappedDistance);
 }
 
-void PointLight(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, const LightProperties lightProperties, inout float3 color)
-{
-	float3 worldPosition = shading.position;
-	float3 posToLight = lightProperties.Position - worldPosition;
-	float3 L = normalize(posToLight);
-	float attenuation = GetDistanceAttenuation(posToLight, lightProperties.Falloff);
-	float NoL = saturate(dot(shading.normal, L));
 
-	[branch]
-	if (NoL * attenuation > 0)
-	{
-		float shadowTerm = 1;
-		
-		[branch]
-		if(lightProperties.IsCastingShadow())
-		{
-			shadowTerm = SampleShadowMapCube(posToLight, lightProperties);
-		}
-		
-		float3 lightColor = lightProperties.Color * 
-							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
-							material.ambientOcclusion * 
-							attenuation *
-							shadowTerm;
-		
-		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L, NoL);
-		color += SurfaceShading(shading, pixel, surfaceToLight, lightColor);
-	}
-}
-
-float GetAngleAttenuation(const float3 lightDir, const float3 l, const float2 scaleOffset)
-{
-	float cd = dot(lightDir, l);
-	float attenuation = saturate(cd * scaleOffset.x + scaleOffset.y);
-	return attenuation * attenuation;
-}
 
 inline float SampleShadowMap(in float2 base_uv, in float u, in float v, in float2 shadowMapSizeInv,
                       in uint cascadeIdx,  in float depth) {
@@ -1481,6 +1448,45 @@ inline float3 ShadowCascade(in LightProperties lightProperties, in float3 shadow
 	
 	return shadow * cascadeColor;
 }
+#endif
+
+void PointLight(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, const LightProperties lightProperties, inout float3 color)
+{
+	float3 worldPosition = shading.position;
+	float3 posToLight = lightProperties.Position - worldPosition;
+	float3 L = normalize(posToLight);
+	float attenuation = GetDistanceAttenuation(posToLight, lightProperties.Falloff);
+	float NoL = saturate(dot(shading.normal, L));
+
+	[branch]
+	if (NoL * attenuation > 0)
+	{
+		float shadowTerm = 1;
+	#if SHADOW_SUPPORTED
+		[branch]
+		if(lightProperties.IsCastingShadow())
+		{
+			shadowTerm = SampleShadowMapCube(posToLight, lightProperties);
+		}
+	#endif		
+		
+		float3 lightColor = lightProperties.Color * 
+							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
+							material.ambientOcclusion * 
+							attenuation *
+							shadowTerm;
+		
+		SurfaceToLight surfaceToLight = CreateSurfaceToLight(pixel, shading, L, NoL);
+		color += SurfaceShading(shading, pixel, surfaceToLight, lightColor);
+	}
+}
+
+float GetAngleAttenuation(const float3 lightDir, const float3 l, const float2 scaleOffset)
+{
+	float cd = dot(lightDir, l);
+	float attenuation = saturate(cd * scaleOffset.x + scaleOffset.y);
+	return attenuation * attenuation;
+}
 
 void SpotLight(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, const LightProperties lightProperties, inout float3 color)
 {
@@ -1495,7 +1501,8 @@ void SpotLight(const ShadingParams shading, const MaterialInputs material, const
 	if (NoL * attenuation > 0)
 	{
 		float3 shadowTerm = 1;
-		
+	
+	#if SHADOW_SUPPORTED		
 		[branch]
 		if(lightProperties.IsCastingShadow())
 		{
@@ -1503,6 +1510,7 @@ void SpotLight(const ShadingParams shading, const MaterialInputs material, const
 			shadowPosition.xyz /= shadowPosition.w;
 			shadowTerm = ShadowCascade(lightProperties, shadowPosition.xyz, 0);
 		}
+	#endif
 		
 		float3 lightColor = lightProperties.Color * 
 							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
@@ -1515,10 +1523,6 @@ void SpotLight(const ShadingParams shading, const MaterialInputs material, const
 	}
 }
 
-inline bool is_saturated(float a) { return a == saturate(a); }
-inline bool is_saturated(float2 a) { return is_saturated(a.x) && is_saturated(a.y); }
-inline bool is_saturated(float3 a) { return is_saturated(a.x) && is_saturated(a.y) && is_saturated(a.z); }
-
 void DirectionalLight(const ShadingParams shading, const MaterialInputs material, const PixelParams pixel, const LightProperties lightProperties, inout float3 color, in float depthVS)
 {
 	float3 L = lightProperties.Direction;
@@ -1528,7 +1532,8 @@ void DirectionalLight(const ShadingParams shading, const MaterialInputs material
 	if (NoL > 0)
 	{
 		float3 shadowTerm = 1;
-		
+
+	#if SHADOW_SUPPORTED
 		[branch]
 		if(lightProperties.IsCastingShadow())
 		{
@@ -1548,6 +1553,7 @@ void DirectionalLight(const ShadingParams shading, const MaterialInputs material
 			
 			shadowTerm = ShadowCascade(lightProperties, shadowPosition.xyz, cascade);
 		}
+	#endif		
 		
 		float3 lightColor = lightProperties.Color *
 							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
@@ -1600,13 +1606,15 @@ void TubeLight(const ShadingParams shading, const MaterialInputs material, const
 	{
 		float shadowTerm = 1;
 		
+#if SHADOW_SUPPORTED		
 		[branch]
 		if(lightProperties.IsCastingShadow())
 		{
 			float3 lunormalized = lightProperties.Position - shading.position;
 			shadowTerm = SampleShadowMapCube(lunormalized, lightProperties);
 		}
-		
+#endif
+
 		float3 lightColor = lightProperties.Color * 
 							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
 							material.ambientOcclusion * 
@@ -1678,12 +1686,13 @@ void RectangleLight(const ShadingParams shading, const MaterialInputs material, 
 		if ((specularAttenuation * fLight) > 0)
 		{
 			float shadowTerm = 1;
-		
+		#if SHADOW_SUPPORTED
 			[branch]
 			if(lightProperties.IsCastingShadow())
 			{
 				shadowTerm = SampleShadowMapCube(lunormalized, lightProperties);
 			}
+		#endif
 			
 			float3 lightColor = lightProperties.Color *
 								ComputePreExposedIntensity(lightProperties.Intensity, Exposure) *
@@ -1767,12 +1776,13 @@ void DiskLight(const ShadingParams shading, const MaterialInputs material, const
 		if (specularAttenuation > 0)
 		{
 			float shadowTerm = 1;
-		
+		#if SHADOW_SUPPORTED
 			[branch]
 			if(lightProperties.IsCastingShadow())
 			{
 				shadowTerm = SampleShadowMapCube(Lunnormalized, lightProperties);
 			}
+		#endif
 			
 			float3 lightColor = lightProperties.Color *
 								ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
@@ -1808,12 +1818,14 @@ void SphereLight(const ShadingParams shading, const MaterialInputs material, con
 	if (fLight > 0)
 	{
 		float shadowTerm = 1;
-		
+
+	#if SHADOW_SUPPORTED
 		[branch]
 		if(lightProperties.IsCastingShadow())
 		{
 			shadowTerm = SampleShadowMapCube(Lunnormalized, lightProperties);
 		}
+	#endif
 	
 		float3 lightColor = lightProperties.Color * 
 							ComputePreExposedIntensity(lightProperties.Intensity, Exposure) * 
