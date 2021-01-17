@@ -1,9 +1,0 @@
-!WaveEngine.Assets.Exporters.ReflectionProbeMetaFile,WaveEngine.Assets
-Id: daf39953-f34c-4763-8889-9c58b7f3402b
-DefaultProfile:
-  ExcludeAsset: false
-  Name: default
-  Platform: Undefined
-ExportAsRaw: false
-Profiles: {}
-SHCoefficients: null

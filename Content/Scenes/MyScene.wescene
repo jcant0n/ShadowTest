@@ -39,10 +39,10 @@ Items:
         Id: d73a976d-b2ab-4572-9ec9-351ded5f6fd3
         IsEnabled: true
         LocalOrientation:
-          W: 0.936357379
-          X: -0.351048231
-          Y: -5.15343181E-08
-          Z: -7.94563348E-09
+          W: 0.442754745
+          X: -0.588209689
+          Y: 0.540686607
+          Z: -0.406983435
         LocalPosition:
           X: 1.59040689
           Y: 1.40271759
@@ -55,9 +55,9 @@ Items:
         Id: 5f6768ca-a7e6-4ab7-82b2-d9b3c42d111f
         Color:
           A: 0
-          B: 225
-          G: 239
-          R: 248
+          B: 113
+          G: 167
+          R: 213
         ColorByTemperature: true
         Illuminance: 3.0
         Intensity: 3.0
@@ -65,9 +65,9 @@ Items:
         IsShadowEnabled: true
         LinearColor:
           A: 0.0
-          B: 0.761950433
-          G: 0.864497781
-          R: 0.940181375
+          B: 0.167241156
+          G: 0.394933343
+          R: 0.673254311
         PartitionMode: Manual
         ShadowBias: 0.00499999244
         SplitDistance:
@@ -75,6 +75,7 @@ Items:
           - 0.150000006
           - 0.5
           - 1.0
+        StabilizeCascades: true
         Temperature: 6499.98047
       - !WaveEngine.Framework.Graphics.SunComponent,WaveEngine.Framework
         Id: 6f2b70f3-a505-49a6-9454-130b04d48cd3
@@ -107,7 +108,7 @@ Items:
         Id: bb44cd62-4d92-418a-8a42-bbc2ed2b6f07
         AsignedTo: Default
         IsEnabled: true
-        Material: a31ddfac-87a3-4957-9f79-f313522d3552
+        Material: 0fb3f13a-503e-4a46-b4c4-a11346b324a9
       - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
         Id: 3ef37285-f016-4173-bbf0-278ec1624224
         Diameter: 1.0
@@ -264,9 +265,9 @@ Items:
           Y: -0.803373396
           Z: -0.362698764
         LocalPosition:
-          X: -2.95683408
-          Y: -0.278882742
-          Z: 0.58065784
+          X: -2.80567741
+          Y: 0.501839161
+          Z: 0.580657482
         LocalScale:
           X: 0.529819608
           Y: 0.529819608
@@ -306,9 +307,9 @@ Items:
           Y: 3.576219E-07
           Z: 0.0
         LocalPosition:
-          X: -1.16282451
-          Y: -0.474317461
-          Z: 1.89017415
+          X: -0.728413224
+          Y: -0.462713301
+          Z: 1.39914608
         LocalScale:
           X: 0.937692225
           Y: 0.937692225
@@ -349,8 +350,8 @@ Items:
           Y: 0.377192855
           Z: -0.774413288
         LocalPosition:
-          X: -0.712198257
-          Y: 0.657171607
+          X: -0.712197363
+          Y: -0.269427776
           Z: 0.236047029
         LocalScale:
           X: 0.587107062
