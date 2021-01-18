@@ -30,59 +30,6 @@ Items:
     Children: []
     Id: 3aea6832-ccae-4bc6-9bb7-64229c7c2de0
   - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
-    Name: SunLight
-    Tag: null
-    IsEnabled: true
-    IsStatic: false
-    Components:
-      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
-        Id: d73a976d-b2ab-4572-9ec9-351ded5f6fd3
-        IsEnabled: true
-        LocalOrientation:
-          W: 0.442754745
-          X: -0.588209689
-          Y: 0.540686607
-          Z: -0.406983435
-        LocalPosition:
-          X: 1.59040689
-          Y: 1.40271759
-          Z: -1.82230282
-        LocalScale:
-          X: 1.0
-          Y: 1.0
-          Z: 1.0
-      - !WaveEngine.Framework.Graphics.PhotometricDirectionalLight,WaveEngine.Framework
-        Id: 5f6768ca-a7e6-4ab7-82b2-d9b3c42d111f
-        Color:
-          A: 0
-          B: 113
-          G: 167
-          R: 213
-        ColorByTemperature: true
-        Illuminance: 3.0
-        Intensity: 3.0
-        IsEnabled: true
-        IsShadowEnabled: true
-        LinearColor:
-          A: 0.0
-          B: 0.167241156
-          G: 0.394933343
-          R: 0.673254311
-        PartitionMode: Manual
-        ShadowBias: 0.00499999244
-        SplitDistance:
-          - 0.0500000007
-          - 0.150000006
-          - 0.5
-          - 1.0
-        StabilizeCascades: true
-        Temperature: 6499.98047
-      - !WaveEngine.Framework.Graphics.SunComponent,WaveEngine.Framework
-        Id: 6f2b70f3-a505-49a6-9454-130b04d48cd3
-        IsEnabled: true
-    Children: []
-    Id: 3f7df33e-e1b9-411e-9601-362975b0c871
-  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
     Name: SkyAtmosphere
     Tag: Skybox
     IsEnabled: true
@@ -108,7 +55,7 @@ Items:
         Id: bb44cd62-4d92-418a-8a42-bbc2ed2b6f07
         AsignedTo: Default
         IsEnabled: true
-        Material: 0fb3f13a-503e-4a46-b4c4-a11346b324a9
+        Material: f2029c1e-7abf-4bed-8e7d-535a077bd220
       - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
         Id: 3ef37285-f016-4173-bbf0-278ec1624224
         Diameter: 1.0
@@ -422,4 +369,47 @@ Items:
         OrderBias: 0
     Children: []
     Id: 696ba416-9f32-4236-b990-41e61f0e88c3
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: spotLight
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: 204c6ac9-9d22-4709-a4ae-5ade31b39cdc
+        IsEnabled: true
+        LocalOrientation:
+          W: 0.751353085
+          X: -0.151333824
+          Y: 0.62966913
+          Z: 0.126820266
+        LocalPosition:
+          X: 1.18288755
+          Y: 0.629615307
+          Z: 0.635031223
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Framework.Graphics.SpotLight,WaveEngine.Framework
+        Id: 250dc3fd-10b3-41cf-8ba6-a11c226f1113
+        Color:
+          A: 255
+          B: 255
+          G: 255
+          R: 255
+        InnerConeAngle: 0.400000006
+        Intensity: 20.0
+        IsEnabled: true
+        IsShadowEnabled: true
+        LightRange: 20.0
+        LinearColor:
+          A: 1.0
+          B: 1.0
+          G: 1.0
+          R: 1.0
+        OuterConeAngle: 0.785398185
+        ShadowBias: 0.00100000005
+    Children: []
+    Id: 931b3711-146f-461f-99a4-21ed4e7eaaa1
 Managers: []
