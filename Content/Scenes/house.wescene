@@ -39,13 +39,13 @@ Items:
         Id: 217f3aa4-5cb7-4184-81a5-494559de82df
         IsEnabled: true
         LocalOrientation:
-          W: 0.932639122
-          X: -0.304225832
-          Y: -0.186422676
-          Z: -0.0536394157
+          W: 0.882441759
+          X: -0.428383231
+          Y: -0.192346662
+          Z: -0.0280529186
         LocalPosition:
           X: 2.51226568
-          Y: 2.83395982
+          Y: 2.08957505
           Z: 0.488143057
         LocalScale:
           X: 1.0
@@ -55,26 +55,28 @@ Items:
         Id: f17de9d3-848b-4fa0-b14a-f35a4e1ce54c
         Color:
           A: 0
-          B: 223
-          G: 237
-          R: 247
+          B: 228
+          G: 240
+          R: 249
         ColorByTemperature: true
-        Illuminance: 3.0
-        Intensity: 3.0
+        Illuminance: 10.0
+        Intensity: 10.0
         IsEnabled: true
         IsShadowEnabled: true
         LinearColor:
           A: 0.0
-          B: 0.74611342
-          G: 0.854894638
-          R: 0.935843766
-        PartitionMode: Logarithmic
+          B: 0.779187977
+          G: 0.874891102
+          R: 0.9453125
+        PartitionMode: Manual
         ShadowBias: 0.00400000019
+        ShadowDistance: 10.0
         SplitDistance:
           - 0.0500000007
           - 0.150000006
           - 0.5
           - 1.0
+        StabilizeCascades: true
         Temperature: 6500.0
       - !WaveEngine.Framework.Graphics.SunComponent,WaveEngine.Framework
         Id: 2b9e67d4-812f-4359-baeb-0d807a5189e8
@@ -107,7 +109,7 @@ Items:
         Id: 1c25133e-0e08-4b1f-9e16-306cf840bffd
         AsignedTo: Default
         IsEnabled: true
-        Material: a5232b5d-36a6-4c07-9fd3-8bf665a13307
+        Material: 7b5d70d7-fef8-4b11-8220-2949f4ee2cf8
       - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
         Id: 3ba759e5-e889-4060-9463-478be8f6c842
         Diameter: 1.0
@@ -37673,9 +37675,9 @@ Items:
                               Y: 0.0
                               Z: 0.0
                             LocalPosition:
-                              X: 0.0
-                              Y: 0.0
-                              Z: 0.0
+                              X: 0.0179443359
+                              Y: -0.0375366211
+                              Z: 0.903320312
                             LocalScale:
                               X: 1.0
                               Y: 1.0
@@ -37713,9 +37715,9 @@ Items:
                               Y: 0.0
                               Z: 0.0
                             LocalPosition:
-                              X: 0.0
-                              Y: 0.0
-                              Z: 0.0
+                              X: 0.0935058594
+                              Y: -0.105285645
+                              Z: 3.55078125
                             LocalScale:
                               X: 1.0
                               Y: 1.0
@@ -38407,4 +38409,54 @@ Items:
             Id: 63f80eb7-342b-4478-a9df-5d0460eda8fd
         Id: 8ed25571-edf1-4adc-a0f9-b1f6a7f1302f
     Id: b1925564-444e-409c-8485-85ae232348dd
+  - !WaveEngine.Framework.Assets.AssetSources.Entities.EntityItemModel,WaveEngine.Framework
+    Name: postProcesingVolume
+    Tag: null
+    IsEnabled: true
+    IsStatic: false
+    Components:
+      - !WaveEngine.Framework.Graphics.Transform3D,WaveEngine.Framework
+        Id: ff758d99-56a4-4a10-9b8c-63c86241c0cf
+        IsEnabled: true
+        LocalOrientation:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        LocalPosition:
+          X: 5.40237522
+          Y: 0.710489154
+          Z: 0.157880008
+        LocalScale:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+      - !WaveEngine.Components.Graphics3D.PostProcessingGraphRenderer,WaveEngine.Components
+        Id: ddbbbf53-b82e-49b7-90bd-c9218875901c
+        DebugBoundingbox: true
+        IsCullingEnabled: true
+        IsEnabled: true
+        IsGlobal: true
+        LayerOrder: 10
+        OrderBias: 0
+        ppGraph: dd593717-0922-4f58-9c85-c309658eff03
+      - !WaveEngine.Framework.Physics3D.BoxCollider3D,WaveEngine.Framework
+        Id: cbf28ffe-6128-4640-bb3b-3d879c357a64
+        IsEnabled: true
+        Margin: 0.0399999991
+        Offset:
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        OrientationOffset:
+          W: 1.0
+          X: 0.0
+          Y: 0.0
+          Z: 0.0
+        Size:
+          X: 1.0
+          Y: 1.0
+          Z: 1.0
+    Children: []
+    Id: 88a8dd90-5425-4686-b8dc-fed892b96117
 Managers: []
