@@ -70,6 +70,7 @@ Items:
           R: 0.9453125
         PartitionMode: Manual
         ShadowBias: 0.00400000019
+        ShadowDistance: 10.0
         SplitDistance:
           - 0.0500000007
           - 0.150000006
@@ -108,7 +109,7 @@ Items:
         Id: 1c25133e-0e08-4b1f-9e16-306cf840bffd
         AsignedTo: Default
         IsEnabled: true
-        Material: 1d85f5db-0827-443b-88b4-55279e8e101d
+        Material: 7b5d70d7-fef8-4b11-8220-2949f4ee2cf8
       - !WaveEngine.Components.Graphics3D.SphereMesh,WaveEngine.Components
         Id: 3ba759e5-e889-4060-9463-478be8f6c842
         Diameter: 1.0
@@ -37674,9 +37675,9 @@ Items:
                               Y: 0.0
                               Z: 0.0
                             LocalPosition:
-                              X: 0.0
-                              Y: 0.0
-                              Z: 0.0
+                              X: 0.0179443359
+                              Y: -0.0375366211
+                              Z: 0.903320312
                             LocalScale:
                               X: 1.0
                               Y: 1.0
@@ -37714,9 +37715,9 @@ Items:
                               Y: 0.0
                               Z: 0.0
                             LocalPosition:
-                              X: 0.0
-                              Y: 0.0
-                              Z: 0.0
+                              X: 0.0935058594
+                              Y: -0.105285645
+                              Z: 3.55078125
                             LocalScale:
                               X: 1.0
                               Y: 1.0
